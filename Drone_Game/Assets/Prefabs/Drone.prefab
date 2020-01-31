@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5320688371786739402}
   - component: {fileID: 2649345002153233073}
   m_Layer: 0
-  m_Name: DroneParent
+  m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,9 +130,11 @@ MonoBehaviour:
   m_HorizontalSpeed: 10
   m_ForwardSpeed: 10
   m_VerticalSpeed: 10
-  m_TurnSpeed: 0
+  m_TurnSpeed: 3
+  m_AllowTilting: 1
   m_TiltAngle: 15
   m_Camera: {fileID: 5320688371973937033}
+  m_DroneMesh: {fileID: 2159873589937812028}
 --- !u!54 &2649345002153233073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5320688371973937046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -9}
+  m_LocalPosition: {x: 0, y: 2, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2159873591005248260}
@@ -245,8 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9348baa69d0eb14ea3456239c4aa0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DroneTransform: {fileID: 0}
   m_MouseXKey: Mouse X
   m_MouseYKey: Mouse Y
   m_CameraTurnSpeed: 2
-  m_DroneTurnSpeed: 5
+  m_CameraPitchClamp:
+    Min: -35
+    Max: 60
