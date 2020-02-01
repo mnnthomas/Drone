@@ -20,6 +20,12 @@ namespace DroneGame
         [SerializeField] private float m_VerticalSpeed = default;
         [SerializeField] private float m_TurnSpeed = default;
 
+        [Header("Drone movement audio")]
+        [SerializeField] private Utilities.MinMax m_MovingPitchRange = default;
+        [SerializeField] private Utilities.MinMax m_IdlingPitchRange = default;
+        [SerializeField] private float m_MovingVolume = default;
+        [SerializeField] private float m_IdlingVolume = default;
+
         [Header("Experiemental feature")]
         [SerializeField] private bool m_AllowTilting = default;
         [SerializeField] private float m_TiltAngle = default;
@@ -28,11 +34,18 @@ namespace DroneGame
         [SerializeField] private Camera m_Camera = default;
         [SerializeField] private GameObject m_DroneMesh = default;
 
+        private AudioSource mAudioSource;
+        private bool mIsIdlePlaying;
 
         private string mPreviousClickedKey;
         private string mClickTime;
 
-        void Update()
+        private void Start()
+        {
+            mAudioSource = GetComponent<AudioSource>();
+        }
+
+        private void Update()
         {
             Move();
             CheckDoubleClick();
@@ -46,13 +59,15 @@ namespace DroneGame
         /// <summary>
         /// get the keyboard inputs and decides movementVector for drone every frame.
         /// </summary>
-        void Move()
+        private void Move()
         {
             Vector3 movementVector = new Vector3(Input.GetAxis(m_HorizontalKey) * m_HorizontalSpeed, Input.GetAxis(m_VerticalKey) * m_VerticalSpeed, Input.GetAxis(m_ForwardKey) * m_ForwardSpeed) * Time.deltaTime;
             transform.Translate(movementVector, Space.Self);
+
+            UpdateEngineSound(movementVector);
         }
 
-        void CheckDoubleClick()
+        private void CheckDoubleClick()
         {
             if(Input.anyKeyDown)
             {
@@ -60,11 +75,30 @@ namespace DroneGame
             }
         }
 
+        private void UpdateEngineSound(Vector3 movement)
+        {
+            if(movement == Vector3.zero && !mIsIdlePlaying)
+            {
+                //drone is Idling
+                mIsIdlePlaying = true;
+                mAudioSource.volume = m_IdlingVolume;
+                mAudioSource.pitch = Random.Range(m_IdlingPitchRange.Min, m_IdlingPitchRange.Max);
+                mAudioSource.Play();
+            }
+            else if(movement != Vector3.zero && mIsIdlePlaying)
+            {
+                mIsIdlePlaying = false;
+                mAudioSource.volume = m_MovingVolume;
+                mAudioSource.pitch = Random.Range(m_MovingPitchRange.Min, m_MovingPitchRange.Max);
+                mAudioSource.Play();
+            }
+        }
+
         /// <summary>
         /// Turns the drone towards camera's forward. 
         /// Added an experimental drone tilt feature.
         /// </summary>
-        void Turn()
+        private void Turn()
         {
             Quaternion cameraRot = m_Camera.transform.rotation;
 
@@ -75,7 +109,7 @@ namespace DroneGame
             }
 
             Vector3 velocity = Vector3.zero;
-            transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, m_TurnSpeed* Time.deltaTime);
+            transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, Time.deltaTime, m_TurnSpeed);
             m_Camera.transform.rotation = cameraRot;
         }
     }
