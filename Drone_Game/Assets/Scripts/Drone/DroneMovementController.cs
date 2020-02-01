@@ -35,6 +35,7 @@ namespace DroneGame
         [SerializeField] private GameObject m_DroneMesh = default;
 
         private AudioSource mAudioSource;
+        private Rigidbody mRigidbody;
         private bool mIsIdlePlaying;
 
         private string mPreviousClickedKey;
@@ -43,6 +44,7 @@ namespace DroneGame
         private void Start()
         {
             mAudioSource = GetComponent<AudioSource>();
+            mRigidbody = GetComponent<Rigidbody>();
         }
 
         private void Update()
@@ -69,9 +71,10 @@ namespace DroneGame
 
         private void CheckDoubleClick()
         {
-            if(Input.anyKeyDown)
+            if (Input.GetButtonDown(m_HorizontalKey))
             {
-                //need to code
+                Debug.Log(" >> horizontal key pressed " + Input.GetButtonDown(m_HorizontalKey).ToString()+" >> "+ mRigidbody.velocity);
+                
             }
         }
 
@@ -102,14 +105,15 @@ namespace DroneGame
         {
             Quaternion cameraRot = m_Camera.transform.rotation;
 
-            if(m_AllowTilting)
+            Vector3 velocity = Vector3.zero;
+            transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, Time.deltaTime, m_TurnSpeed);
+
+            if (m_AllowTilting)
             {
                 Quaternion quaternion = Quaternion.Euler(Input.GetAxis(m_ForwardKey) * m_TiltAngle, 0f, -Input.GetAxis(m_HorizontalKey) * m_TiltAngle);
                 m_DroneMesh.transform.localRotation = quaternion;
             }
 
-            Vector3 velocity = Vector3.zero;
-            transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, Time.deltaTime, m_TurnSpeed);
             m_Camera.transform.rotation = cameraRot;
         }
     }

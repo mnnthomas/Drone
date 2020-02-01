@@ -10,18 +10,15 @@ namespace DroneGame
         [SerializeField] protected float m_Speed = default;
         [SerializeField] protected float m_DurationAlive = default;
         [SerializeField] protected GameObject m_ExplosionParticle = default;
-        [SerializeField] protected AudioClip m_ExplosionClip = default;
 
         protected Transform mCurTarget;
         protected Vector3 mCurDirection;
         protected bool mInitialized;
 
-        protected AudioSource mAudioSource;
         protected Rigidbody mRigidbody;
 
         private void OnEnable()
         {
-            mAudioSource = GetComponent<AudioSource>();
             mRigidbody = GetComponent<Rigidbody>();
             Invoke("DestroyBullet", m_DurationAlive);
         }
@@ -38,16 +35,14 @@ namespace DroneGame
 
         protected virtual void OnCollided(GameObject obj)
         {
-            if (mAudioSource && m_ExplosionClip)
-                mAudioSource.PlayOneShot(m_ExplosionClip);
+            if (m_ExplosionParticle)
+                Instantiate(m_ExplosionParticle, transform.position, Quaternion.identity);
+
             DestroyBullet();
         }
 
         protected virtual void DestroyBullet()
         {
-            if (m_ExplosionParticle)
-                Instantiate(m_ExplosionParticle, transform.position, Quaternion.identity);
-
             ObjectPoolManager.pInstance.AddBackToPool(gameObject);
         }
 
