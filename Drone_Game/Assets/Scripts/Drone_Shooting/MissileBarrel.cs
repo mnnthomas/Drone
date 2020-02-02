@@ -5,14 +5,14 @@ using UnityEngine;
 namespace DroneGame
 {
     /// <summary>
-    /// BulletBarrel extends the Ishoot interface
-    /// Spawns bullet from the spawn point's forward
+    /// MissileBarrel extends the Ishoot interface
+    /// Spawns missile from the spawn point's forward
     /// </summary>
-    public class BulletBarrel : MonoBehaviour, IShoot
+    public class MissileBarrel : MonoBehaviour, IShoot
     {
         [SerializeField] private Transform m_SpawnPoint = default;
         [SerializeField] private AudioClip m_SpawnClip = default;
-        [SerializeField] private string m_BulletName = default;
+        [SerializeField] private string m_MissileName = default;
         private AudioSource mAudioSource;
 
         void Start()
@@ -22,12 +22,12 @@ namespace DroneGame
 
         public void Shoot(Transform target = null)
         {
-            GameObject bullet;
-            bullet = ObjectPoolManager.pInstance.SpawnObject(m_BulletName, m_SpawnPoint.position, Quaternion.identity); 
+            GameObject missile;
+            missile = ObjectPoolManager.pInstance.SpawnObject(m_MissileName, m_SpawnPoint.position, Quaternion.identity);
 
-            if(bullet)
+            if (missile)
             {
-                bullet.GetComponent<Bullet>().InitializeBullet(m_SpawnPoint.forward, target);
+                missile.GetComponent<HomingMissile>().InitializeBullet(m_SpawnPoint.forward, target);
 
                 if (mAudioSource && m_SpawnClip)
                     mAudioSource.PlayOneShot(m_SpawnClip, 1f);

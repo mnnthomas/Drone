@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class BulletBase : MonoBehaviour
     {
         [SerializeField] protected float m_Damage = default;
         [SerializeField] protected float m_Speed = default;
+        [SerializeField] protected float m_TurnSpeed = default;
         [SerializeField] protected float m_DurationAlive = default;
         [SerializeField] protected GameObject m_ExplosionParticle = default;
 

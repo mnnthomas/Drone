@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1298463554623268648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -107,10 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 10
-  m_Speed: 50
+  m_Speed: 100
   m_DurationAlive: 5
   m_ExplosionParticle: {fileID: 0}
-  m_ExplosionClip: {fileID: 8300000, guid: e1f224ee132dee048a80a488da67d860, type: 3}
 --- !u!54 &4468217929950768530
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,16 +14,5 @@ namespace DroneGame
             transform.LookAt(mCurDirection);
         }
 
-        private void Update()
-        {
-            if (mInitialized)
-            {
-            }
-        }
-
-        private void UpdateBullet()
-        {
-
-        }
     }
 }
