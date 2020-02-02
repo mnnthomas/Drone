@@ -24,7 +24,6 @@ namespace DroneGame
         {
             GameObject missile;
             missile = ObjectPoolManager.pInstance.SpawnObject(m_MissileName, m_SpawnPoint.position, Quaternion.identity);
-
             if (missile)
             {
                 missile.GetComponent<HomingMissile>().InitializeBullet(m_SpawnPoint.forward, target);

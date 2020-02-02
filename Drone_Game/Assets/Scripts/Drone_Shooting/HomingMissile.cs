@@ -16,6 +16,7 @@ namespace DroneGame
         {
             mCurTarget = target;
             mRigidbody.AddForce(m_MissileLaunchForce * forward, ForceMode.Force);
+            transform.LookAt(Vector3.up);
             mMissleLaunchTime = Time.time;
         }
 

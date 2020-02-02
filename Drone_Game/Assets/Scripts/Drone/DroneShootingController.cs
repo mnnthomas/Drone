@@ -17,7 +17,11 @@ namespace DroneGame
         [SerializeField] private LineRenderer m_LaserSights = default;
         [SerializeField] private string m_TurretTag = default;
         [SerializeField] private int m_MaxScannedTargets = default;
-        [SerializeField] private int m_ScanDelay = default;
+        [SerializeField] private float m_MissleTossDelay = default;
+        [SerializeField] private int m_MissileScanDelay = default;
+
+        private float mMissleLaunchTime;
+        private bool mLaunchingMissile = false;
 
         private List<GameObject> mCurScannedTurrets = new List<GameObject>();
 
@@ -45,6 +49,9 @@ namespace DroneGame
 
         private void ScanTargets()
         {
+            if ((mMissleLaunchTime != 0 && Time.time - mMissleLaunchTime <= m_MissileScanDelay) || mLaunchingMissile)
+                return;
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
@@ -62,12 +69,15 @@ namespace DroneGame
             m_LaserSights.enabled = false;
             if (mCurScannedTurrets.Count > 0 && m_MissileBarrels.Count > 0)
             {
-                for(int i = 0; i < mCurScannedTurrets.Count; i++)
+                mLaunchingMissile = true;
+                for (int i = 0; i < mCurScannedTurrets.Count; i++)
                 {
-                    m_MissileBarrels[Random.Range(0, m_MissileBarrels.Count)].Shoot(mCurScannedTurrets[i].transform);
-                    yield return new WaitForSeconds(1);
+                    m_MissileBarrels[i % 2].Shoot(mCurScannedTurrets[i].transform);
+                    yield return new WaitForSeconds(m_MissleTossDelay);
                 }
                 mCurScannedTurrets.Clear();
+                mMissleLaunchTime = Time.time;
+                mLaunchingMissile = false;
             }
         }
     }

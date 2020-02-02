@@ -144,7 +144,7 @@ MonoBehaviour:
   m_TurnSpeed: 10
   m_DurationAlive: 20
   m_ExplosionParticle: {fileID: 0}
-  m_MissileLaunchForce: 500
+  m_MissileLaunchForce: 750
   m_MissileSeekStartDelay: 1
 --- !u!136 &7919222521139402020
 CapsuleCollider:
