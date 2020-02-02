@@ -74,7 +74,6 @@ namespace DroneGame
             if (Input.GetButtonDown(m_HorizontalKey))
             {
                 Debug.Log(" >> horizontal key pressed " + Input.GetButtonDown(m_HorizontalKey).ToString()+" >> "+ mRigidbody.velocity);
-                
             }
         }
 
