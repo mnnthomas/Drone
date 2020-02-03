@@ -687,6 +687,8 @@ MonoBehaviour:
   m_ForwardSpeed: 25
   m_VerticalSpeed: 25
   m_TurnSpeed: 3
+  m_DashDistance: 20
+  m_DashDuration: 0.3
   m_MovingPitchRange:
     Min: 0.85
     Max: 1
@@ -1394,7 +1396,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6baaefd866b150841ba0fc0af70222b3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

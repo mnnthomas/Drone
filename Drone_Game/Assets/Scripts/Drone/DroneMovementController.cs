@@ -19,6 +19,8 @@ namespace DroneGame
         [SerializeField] private float m_ForwardSpeed = default;
         [SerializeField] private float m_VerticalSpeed = default;
         [SerializeField] private float m_TurnSpeed = default;
+        [SerializeField] private float m_DashDistance = default;
+        [SerializeField] private float m_DashDuration = default;
 
         [Header("Drone movement audio")]
         [SerializeField] private Utilities.MinMax m_MovingPitchRange = default;
@@ -39,7 +41,9 @@ namespace DroneGame
         private bool mIsIdlePlaying;
 
         private string mPreviousClickedKey;
-        private string mClickTime;
+        private float mPreviousClickedAxis;
+        private float mPreviousClickTime;
+        private bool mIsDashing;
 
         private void Start()
         {
@@ -63,18 +67,79 @@ namespace DroneGame
         /// </summary>
         private void Move()
         {
-            Vector3 movementVector = new Vector3(Input.GetAxis(m_HorizontalKey) * m_HorizontalSpeed, Input.GetAxis(m_VerticalKey) * m_VerticalSpeed, Input.GetAxis(m_ForwardKey) * m_ForwardSpeed) * Time.deltaTime;
-            transform.Translate(movementVector, Space.Self);
+            Vector3 movementVector = default;
+            if (!mIsDashing)
+            {
+                movementVector = new Vector3(Input.GetAxis(m_HorizontalKey) * m_HorizontalSpeed, Input.GetAxis(m_VerticalKey) * m_VerticalSpeed, Input.GetAxis(m_ForwardKey) * m_ForwardSpeed) * Time.deltaTime;
+                transform.Translate(movementVector, Space.Self);
+            }
 
             UpdateEngineSound(movementVector);
         }
 
         private void CheckDoubleClick()
         {
-            if (Input.GetButtonDown(m_HorizontalKey))
+            if(Time.time - mPreviousClickTime > 0.5f && !string.IsNullOrEmpty(mPreviousClickedKey))
             {
-                Debug.Log(" >> horizontal key pressed " + Input.GetButtonDown(m_HorizontalKey).ToString()+" >> "+ mRigidbody.velocity);
+                mPreviousClickedKey = default;
+                mPreviousClickTime = default;
+                mPreviousClickedAxis = default;
             }
+
+            if(Input.GetButtonDown(m_HorizontalKey) || Input.GetButtonDown(m_VerticalKey) || Input.GetButtonDown(m_ForwardKey))
+            {
+                string curKey = default;
+                if (Input.GetButtonDown(m_HorizontalKey))
+                    curKey = m_HorizontalKey;
+                else if (Input.GetButtonDown(m_VerticalKey))
+                    curKey = m_VerticalKey;
+                else if (Input.GetButtonDown(m_ForwardKey))
+                    curKey = m_ForwardKey;
+
+                if (!string.IsNullOrEmpty(curKey))
+                {
+                    if (string.IsNullOrEmpty(mPreviousClickedKey) || mPreviousClickedKey != curKey || ((mPreviousClickedKey == curKey ) && Utilities.IsPositiveValue(mPreviousClickedAxis) != Utilities.IsPositiveValue(Input.GetAxis(curKey))))
+                    {
+                        mPreviousClickedKey = curKey;
+                        mPreviousClickedAxis = Input.GetAxis(mPreviousClickedKey);
+                        mPreviousClickTime = Time.time;
+                        return;
+                    }
+                    else if (mPreviousClickedKey == curKey && Utilities.IsPositiveValue(mPreviousClickedAxis) == Utilities.IsPositiveValue(Input.GetAxis(curKey)) && Time.time - mPreviousClickTime <= 0.5f)
+                    {
+                        bool isPositiveAxis = Utilities.IsPositiveValue(Input.GetAxis(curKey));
+                        if (curKey == m_ForwardKey)
+                            StartCoroutine(Dash(isPositiveAxis ? transform.forward : -transform.forward));
+                        else if (curKey == m_VerticalKey)
+                            StartCoroutine(Dash(isPositiveAxis ? transform.up : -transform.up));
+                        else if (curKey == m_HorizontalKey)
+                            StartCoroutine(Dash(isPositiveAxis ? transform.right : -transform.right));
+
+                        mPreviousClickedKey = default;
+                        mPreviousClickTime = default;
+                        mPreviousClickedAxis = default;
+                    }
+                }
+            }            
+        }
+
+        IEnumerator Dash(Vector3 direction)
+        {
+            Vector3 velocity = Vector3.zero;
+            Vector3 targetPosition = transform.position + direction * m_DashDistance;
+            if (targetPosition.y < 1.5f)
+                targetPosition.y = 1.5f;
+
+            mIsDashing = true;
+            float startTime = Time.time;
+            float step = default;
+            while (step < 1 && mIsDashing)
+            {
+                step += Time.deltaTime / m_DashDuration;
+                transform.position = Vector3.Lerp(transform.position, targetPosition, step);
+                yield return null;
+            }
+            mIsDashing = false;
         }
 
         private void UpdateEngineSound(Vector3 movement)
@@ -102,18 +167,22 @@ namespace DroneGame
         /// </summary>
         private void Turn()
         {
-            Quaternion cameraRot = m_Camera.transform.rotation;
-
-            Vector3 velocity = Vector3.zero;
-            transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, Time.deltaTime, m_TurnSpeed);
-
-            if (m_AllowTilting)
+            if(!mIsDashing)
             {
-                Quaternion quaternion = Quaternion.Euler(Input.GetAxis(m_ForwardKey) * m_TiltAngle, 0f, -Input.GetAxis(m_HorizontalKey) * m_TiltAngle);
-                m_DroneMesh.transform.localRotation = quaternion;
-            }
 
-            m_Camera.transform.rotation = cameraRot;
+                Quaternion cameraRot = m_Camera.transform.rotation;
+
+                Vector3 velocity = Vector3.zero;
+                transform.forward = Vector3.SmoothDamp(transform.forward, m_Camera.transform.forward, ref velocity, Time.deltaTime, m_TurnSpeed);
+
+                if (m_AllowTilting)
+                {
+                    Quaternion quaternion = Quaternion.Euler(Input.GetAxis(m_ForwardKey) * m_TiltAngle, 0f, -Input.GetAxis(m_HorizontalKey) * m_TiltAngle);
+                    m_DroneMesh.transform.localRotation = quaternion;
+                }
+
+                m_Camera.transform.rotation = cameraRot;
+            }
         }
     }
 }

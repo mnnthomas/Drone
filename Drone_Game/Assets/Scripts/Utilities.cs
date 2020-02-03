@@ -65,5 +65,10 @@ namespace DroneGame
                 return ((num - _Min._Value) / (_Max._Value - _Min._Value) * (_Max._MappedValue - _Min._MappedValue)) + _Min._MappedValue;
             }
         }
+
+        public static bool IsPositiveValue(float value)
+        {
+            return value > 0;
+        }
     }
 }
