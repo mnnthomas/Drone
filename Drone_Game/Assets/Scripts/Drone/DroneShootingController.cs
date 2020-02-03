@@ -10,9 +10,10 @@ namespace DroneGame
         [SerializeField] private string m_PrimaryWeaponKey = default;
         [SerializeField] private string m_SecondayWeaponKey = default;
 
-        [SerializeField] private BulletBarrel m_LeftBarrel = default;
-        [SerializeField] private BulletBarrel m_RightBarrel = default;
-        [SerializeField] private List<MissileBarrel> m_MissileBarrels = new List<MissileBarrel>();
+       // [SerializeField] private BulletBarrel m_LeftBarrel = default;
+       // [SerializeField] private BulletBarrel m_RightBarrel = default;
+        [SerializeField] private List<BulletBarrel> m_PrimaryBarrels = new List<BulletBarrel>();
+        [SerializeField] private List<BulletBarrel> m_MissileBarrels = new List<BulletBarrel>();
 
         [SerializeField] private LineRenderer m_LaserSights = default;
         [SerializeField] private string m_TurretTag = default;
@@ -43,8 +44,8 @@ namespace DroneGame
 
         private void FireBullets()
         {
-            m_LeftBarrel.Shoot();
-            m_RightBarrel.Shoot();
+            for (int i = 0; i < m_PrimaryBarrels.Count; i++)
+                m_PrimaryBarrels[i].Shoot();
         }
 
         private void ScanTargets()

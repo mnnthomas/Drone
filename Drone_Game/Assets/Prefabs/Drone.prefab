@@ -344,8 +344,8 @@ GameObject:
   - component: {fileID: 4812934274408425718}
   - component: {fileID: 3207697004937837520}
   - component: {fileID: 6622916117342485901}
-  - component: {fileID: 5320688370889663259}
   - component: {fileID: 5320688370889663258}
+  - component: {fileID: 1052368720011239376}
   m_Layer: 0
   m_Name: MissileLeft_Barrel
   m_TagString: Player
@@ -426,21 +426,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5320688370889663259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576803959066190150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd98542836976014ab154f0483d75be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpawnPoint: {fileID: 5107780435099207894}
-  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
-  m_MissileName: Homing Missile
 --- !u!82 &5320688370889663258
 AudioSource:
   m_ObjectHideFlags: 0
@@ -537,6 +522,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1052368720011239376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576803959066190150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7675026156758b348ace643ad543beb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpawnPoint: {fileID: 5107780435099207894}
+  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
+  m_BulletName: Homing Missile
 --- !u!1 &2159873589937812028
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_VerticalSpeed: 25
   m_TurnSpeed: 3
   m_DashDistance: 20
-  m_DashDuration: 0.3
+  m_DashDuration: 0.75
   m_MovingPitchRange:
     Min: 0.85
     Max: 1
@@ -715,11 +715,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PrimaryWeaponKey: MainFire
   m_SecondayWeaponKey: SubFire
-  m_LeftBarrel: {fileID: 1593874698}
-  m_RightBarrel: {fileID: 1230350593}
+  m_PrimaryBarrels:
+  - {fileID: 1593874698}
+  - {fileID: 1230350593}
   m_MissileBarrels:
-  - {fileID: 482958180}
-  - {fileID: 5320688370889663259}
+  - {fileID: 8076104665527304266}
+  - {fileID: 1052368720011239376}
   m_LaserSights: {fileID: 613662860}
   m_TurretTag: Turret
   m_MaxScannedTargets: 4
@@ -849,8 +850,8 @@ GameObject:
   - component: {fileID: 2759724740322042443}
   - component: {fileID: 3489607615445924647}
   - component: {fileID: 8516326823661876328}
-  - component: {fileID: 482958180}
   - component: {fileID: 482958181}
+  - component: {fileID: 8076104665527304266}
   m_Layer: 0
   m_Name: MissileRight_Barrel
   m_TagString: Player
@@ -931,21 +932,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &482958180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3009283717099063186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd98542836976014ab154f0483d75be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpawnPoint: {fileID: 8429506873711026600}
-  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
-  m_MissileName: Homing Missile
 --- !u!82 &482958181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1042,6 +1028,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8076104665527304266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009283717099063186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7675026156758b348ace643ad543beb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpawnPoint: {fileID: 8429506873711026600}
+  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
+  m_BulletName: Homing Missile
 --- !u!1 &4059522003733717517
 GameObject:
   m_ObjectHideFlags: 0

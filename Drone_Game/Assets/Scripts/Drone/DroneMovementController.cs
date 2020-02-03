@@ -133,7 +133,7 @@ namespace DroneGame
             mIsDashing = true;
             float startTime = Time.time;
             float step = default;
-            while (step < 1 && mIsDashing)
+            while (step < 1 || Time.time - startTime <= m_DashDuration)
             {
                 step += Time.deltaTime / m_DashDuration;
                 transform.position = Vector3.Lerp(transform.position, targetPosition, step);

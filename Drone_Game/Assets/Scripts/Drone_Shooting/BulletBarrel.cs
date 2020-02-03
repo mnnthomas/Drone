@@ -8,7 +8,7 @@ namespace DroneGame
     /// BulletBarrel extends the Ishoot interface
     /// Spawns bullet from the spawn point's forward
     /// </summary>
-    public class BulletBarrel : MonoBehaviour, IShoot
+    public class BulletBarrel : MonoBehaviour
     {
         [SerializeField] private Transform m_SpawnPoint = default;
         [SerializeField] private AudioClip m_SpawnClip = default;
@@ -27,7 +27,7 @@ namespace DroneGame
 
             if(bullet)
             {
-                bullet.GetComponent<Bullet>().InitializeBullet(m_SpawnPoint.forward, target);
+                bullet.GetComponent<BulletBase>().InitializeBullet(m_SpawnPoint.forward, target);
 
                 if (mAudioSource && m_SpawnClip)
                     mAudioSource.PlayOneShot(m_SpawnClip, 1f);
