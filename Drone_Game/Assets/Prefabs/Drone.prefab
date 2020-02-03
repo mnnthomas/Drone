@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 5107780435099207894}
-  m_SpawnClip: {fileID: 8300000, guid: e1f224ee132dee048a80a488da67d860, type: 3}
+  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
   m_MissileName: Homing Missile
 --- !u!82 &5320688370889663258
 AudioSource:
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 8429506873711026600}
-  m_SpawnClip: {fileID: 8300000, guid: e1f224ee132dee048a80a488da67d860, type: 3}
+  m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
   m_MissileName: Homing Missile
 --- !u!82 &482958181
 AudioSource:
