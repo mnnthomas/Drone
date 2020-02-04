@@ -626,7 +626,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2159873589937812028}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
@@ -725,7 +725,9 @@ MonoBehaviour:
   - {fileID: 1052368720011239376}
   m_LaserSights: {fileID: 613662860}
   m_TurretTag: Turret
-  m_ScanLayerToIgnore: Player
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 567
   m_MaxScannedTargets: 4
   m_MissleTossDelay: 0.5
   m_MissileScanDelay: 3

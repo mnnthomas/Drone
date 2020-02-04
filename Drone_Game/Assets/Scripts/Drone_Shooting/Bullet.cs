@@ -22,7 +22,6 @@ namespace DroneGame
             if (m_TargetMousePointer)
             {
                 RaycastHit hit;
-                Vector3 dir = default;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, mIgnoreLayer))
                 {

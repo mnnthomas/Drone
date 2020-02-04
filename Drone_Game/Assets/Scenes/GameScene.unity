@@ -982,8 +982,13 @@ MonoBehaviour:
       type: 3}
     _CanSpawnAboveCount: 1
   - _Name: Homing Missile
-    _Count: 5
+    _Count: 4
     _Object: {fileID: 6589874968264855123, guid: 3d9c35cd7927f4f4cb496626adda333a,
+      type: 3}
+    _CanSpawnAboveCount: 1
+  - _Name: Turret Homing Missile
+    _Count: 8
+    _Object: {fileID: 6589874968264855123, guid: c464ea633120d6a468e60632ec0f63f6,
       type: 3}
     _CanSpawnAboveCount: 1
 --- !u!4 &2048947323

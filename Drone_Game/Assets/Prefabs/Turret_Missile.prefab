@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1356e0805d1627b439b47f02633e790f, type: 2}
+  - {fileID: 2100000, guid: 8f0d39a6d49f6be4fbad31aea1a6147d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,12 +102,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2636564254141102797}
-  - component: {fileID: -4072772902236862157}
   - component: {fileID: 7919222521139402020}
   - component: {fileID: 6163956068070410144}
   - component: {fileID: -1759032705437480863}
+  - component: {fileID: 8277764547146030100}
   m_Layer: 0
-  m_Name: Missile
+  m_Name: Turret_Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,25 +128,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &-4072772902236862157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6589874968264855123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806f51eeed565f946b52a807b784cfde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BulletData: {fileID: 11400000, guid: c4cf7efbbb363064da20084501eeb3e1, type: 2}
-  m_ExplosionParticle: {fileID: 0}
-  m_MissileLaunchForce: 750
-  m_MissileSeekStartDelay: 1
-  m_AudioSource: {fileID: -1759032705437480863}
-  m_MissileSeekClip: {fileID: 8300000, guid: 7dfe25abe82a0524b95a4e87de658111, type: 3}
-  m_MissileFollowClip: {fileID: 8300000, guid: 5ec7b753642830448ad36121c450188e, type: 3}
 --- !u!136 &7919222521139402020
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -273,3 +254,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8277764547146030100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589874968264855123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba6ff802715a1e4d82cbc3d02c33336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BulletData: {fileID: 11400000, guid: fcaf0b72beda04c4dbb781aa8be02a8e, type: 2}
+  m_IgnoreTags:
+  - Turret
+  - TurretScan
+  m_ExplosionParticle: {fileID: 0}

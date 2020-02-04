@@ -21,21 +21,15 @@ namespace DroneGame
         [Header("References for Laser scanning the turrets")]
         [SerializeField] private LineRenderer m_LaserSights = default;
         [SerializeField] private string m_TurretTag = default;
-        [SerializeField] private string m_ScanLayerToIgnore = default;
+        [SerializeField] private LayerMask m_LayerMask = default;
         [SerializeField] private int m_MaxScannedTargets = default;
         [SerializeField] private float m_MissleTossDelay = default;
         [SerializeField] private int m_MissileScanDelay = default;
 
         private float mMissleLaunchTime;
         private bool mLaunchingMissile = false;
-        private LayerMask mIgnoreLayer;
 
         private List<GameObject> mCurScannedTurrets = new List<GameObject>();
-
-        private void Start()
-        {
-            mIgnoreLayer = ~(1 << LayerMask.NameToLayer(m_ScanLayerToIgnore));
-        }
 
         private void Update()
         {
@@ -66,8 +60,9 @@ namespace DroneGame
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mIgnoreLayer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, m_LayerMask))
             {
+                Debug.Log(" >> " + hit.collider.gameObject.name);
                 m_LaserSights.enabled = true;
                 m_LaserSights.SetPosition(0, m_LaserSights.transform.position);
                 m_LaserSights.SetPosition(1, hit.point);
