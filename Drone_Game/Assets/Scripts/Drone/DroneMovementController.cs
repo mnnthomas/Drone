@@ -54,12 +54,18 @@ namespace DroneGame
 
         private void Update()
         {
+            if (!GameManger.pInstance.IsReady())
+                return;
+
             Move();
             CheckDoubleClick();
         }
 
         private void LateUpdate()
         {
+            if (!GameManger.pInstance.IsReady())
+                return;
+
             Turn();
         }
 
@@ -73,6 +79,9 @@ namespace DroneGame
             {
                 movementVector = new Vector3(Input.GetAxis(m_HorizontalKey) * m_HorizontalSpeed, Input.GetAxis(m_VerticalKey) * m_VerticalSpeed, Input.GetAxis(m_ForwardKey) * m_ForwardSpeed) * Time.deltaTime;
                 transform.Translate(movementVector, Space.Self);
+
+                if (transform.position.y < 1.5f)
+                    transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
             }
 
             UpdateEngineSound(movementVector);

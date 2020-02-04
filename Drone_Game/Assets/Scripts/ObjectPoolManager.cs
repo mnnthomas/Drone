@@ -29,10 +29,9 @@ namespace DroneGame
     /// </summary>
     public class ObjectPoolManager : MonoBehaviour
     {
-        public static ObjectPoolManager pInstance { get; private set; } = null; // Singleton 
-        public static System.Action OnObjectsPooled = null; // Action after all the objects are initially instantiated.
-
         [SerializeField] private List<ObjectToPool> m_ObjectsToPool = new List<ObjectToPool>();
+        public static ObjectPoolManager pInstance { get; private set; } = null; // Singleton 
+        private bool mIsReady = false;
 
         private void Awake()
         {
@@ -43,6 +42,11 @@ namespace DroneGame
         private void OnDestroy()
         {
             pInstance = null;
+        }
+
+        public bool IsReady()
+        {
+            return mIsReady;
         }
 
         private void Start()
@@ -58,7 +62,7 @@ namespace DroneGame
                 }
             }
 
-            OnObjectsPooled?.Invoke();
+            mIsReady = true;
         }
 
         /// <summary>

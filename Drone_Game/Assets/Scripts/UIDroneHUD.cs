@@ -10,17 +10,24 @@ namespace DroneGame
     {
         [SerializeField] private Transform m_DroneTransform = default;
         [SerializeField] private Transform m_DroneMeshTransform = default;
+        [SerializeField] private DroneShootingController m_DroneShootingController = default;
+        [SerializeField] private DroneHealthController m_DroneHealthController = default;
 
+        [SerializeField] private Slider m_HealthSlider = default;
         [SerializeField] private TextMeshProUGUI m_PitchText = default;
         [SerializeField] private TextMeshProUGUI m_RollText = default;
         [SerializeField] private TextMeshProUGUI m_AltitudeText = default;
         [SerializeField] private TextMeshProUGUI m_CameraTiltText = default;
+        [SerializeField] private Image m_MissileReady = default;
         [SerializeField] private Image m_AngleBar = default;
         [SerializeField] private Utilities.RangeMap m_AngleBarMap = default;
 
         // Update is called once per frame
         void LateUpdate()
         {
+            if (!GameManger.pInstance.IsReady())
+                return;
+
             UpdateUI();
         }
 
@@ -38,6 +45,13 @@ namespace DroneGame
             }
             if (m_AngleBar)
                 m_AngleBar.rectTransform.anchoredPosition = new Vector2(0, m_AngleBarMap.GetMappedValue(Utilities.NegativeEuler(m_DroneTransform.localEulerAngles.x)));
+
+            if (m_MissileReady && m_DroneShootingController)
+                m_MissileReady.enabled = m_DroneShootingController.IsMissileReady();
+
+            if (m_HealthSlider && m_DroneHealthController)
+                m_HealthSlider.value = m_DroneHealthController.pCurHealth;
+
         }
     }
 }

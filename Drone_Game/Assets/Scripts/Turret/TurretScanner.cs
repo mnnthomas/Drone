@@ -11,26 +11,20 @@ namespace DroneGame
         [SerializeField] private string m_LockdownTag = default;
         [SerializeField] private Turret m_Turret = default;
 
-        private float mPlayerScanStartTime;
-        private float mPlayerScanDelayStartTime;
+        private float mPlayerLockdownStartTime;
+        private float mScanDelayStartTime;
         private GameObject mPlayerObject;
         private bool mStartBarrage = false;
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.tag == m_LockdownTag)
-            {
-                mPlayerObject = other.gameObject;
-                mPlayerScanStartTime = Time.time;
-            }
-        }
-
         private void Update()
         {
-            if (Time.time - mPlayerScanDelayStartTime <= m_ScanDelay)
+            if (!m_Turret.pIsActive || !GameManger.pInstance.IsReady())
                 return;
 
-            if(mPlayerObject && Time.time - mPlayerScanStartTime >= m_LockdownTimer && !mStartBarrage)
+            if (Time.time - mScanDelayStartTime <= m_ScanDelay)
+                return;
+
+            if(mPlayerObject && Time.time - mPlayerLockdownStartTime >= m_LockdownTimer && !mStartBarrage)
             {
                 mStartBarrage = true;
                 OnPlayerScanned();
@@ -46,17 +40,30 @@ namespace DroneGame
         public void ResetScanner()
         {
             mStartBarrage = false;
-            mPlayerScanDelayStartTime = Time.time;
+            mScanDelayStartTime = Time.time;
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == m_LockdownTag)
+            {
+                mPlayerObject = other.gameObject;
+                mPlayerLockdownStartTime = Time.time;
+            }
+        }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.tag == m_LockdownTag)
             {
                 mPlayerObject = null;
-                mPlayerScanStartTime = default;
+                mPlayerLockdownStartTime = default;
             }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            //if(other.tag == m_LockdownTag && )
         }
     }
 }

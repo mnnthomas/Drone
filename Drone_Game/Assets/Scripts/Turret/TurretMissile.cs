@@ -8,9 +8,12 @@ namespace DroneGame
     {
         public override void InitializeBullet(Vector3 forward, Transform target)
         {
-            mCurDirection = forward;
+            mCurDirection = (target.position - transform.position);
+            mCurDirection.Normalize();
+
+            transform.LookAt(target.transform);
             mRigidbody.velocity = mCurDirection * m_BulletData.Speed;
-            transform.LookAt(mCurDirection);
+
         }
     }
 }

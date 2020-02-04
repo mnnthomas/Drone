@@ -627,7 +627,7 @@ MeshCollider:
   m_GameObject: {fileID: 2159873589937812028}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -645,6 +645,8 @@ GameObject:
   - component: {fileID: 5736894230130633745}
   - component: {fileID: 2649345002153233073}
   - component: {fileID: 2158403597286851053}
+  - component: {fileID: 2132504829}
+  - component: {fileID: 2132504828}
   m_Layer: 8
   m_Name: Drone
   m_TagString: Player
@@ -843,6 +845,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &2132504829
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159873591005079332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 28723f10c2a8e094a9351e892f5271b8, type: 3}
+--- !u!114 &2132504828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159873591005079332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bdf41c10d874f24e8fafc41cdc510bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxHealth: 100
 --- !u!1 &3009283717099063186
 GameObject:
   m_ObjectHideFlags: 0

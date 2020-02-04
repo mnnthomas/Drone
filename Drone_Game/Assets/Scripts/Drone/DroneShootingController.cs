@@ -33,6 +33,9 @@ namespace DroneGame
 
         private void Update()
         {
+            if (!GameManger.pInstance.IsReady())
+                return;
+
             if (Input.GetButtonUp(m_PrimaryWeaponKey))
             {
                 FireBullets();
@@ -53,9 +56,14 @@ namespace DroneGame
                 m_PrimaryBarrels[i].Shoot();
         }
 
+        public bool IsMissileReady()
+        {
+            return !(mMissleLaunchTime != 0 && Time.time - mMissleLaunchTime <= m_MissileScanDelay) || mLaunchingMissile;
+        }
+
         private void ScanTargets()
         {
-            if ((mMissleLaunchTime != 0 && Time.time - mMissleLaunchTime <= m_MissileScanDelay) || mLaunchingMissile)
+            if (!IsMissileReady())
                 return;
 
             RaycastHit hit;

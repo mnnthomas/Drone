@@ -43,6 +43,9 @@ namespace DroneGame
             if (m_ExplosionParticle)
                 Instantiate(m_ExplosionParticle, transform.position, Quaternion.identity);
 
+            if (obj.GetComponent<IHealth>() != null)
+                obj.GetComponent<IHealth>().TakeDamage(m_BulletData.Damage);
+
             DestroyBullet();
         }
 

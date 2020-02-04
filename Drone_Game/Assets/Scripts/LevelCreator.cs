@@ -27,8 +27,7 @@ namespace DroneGame
         [SerializeField] private List<Texture2D> m_LevelTextures = new List<Texture2D>();
 
         public static LevelCreator pInstance { get; private set; }
-        public static System.Action OnLevelGenerated;
-
+        private bool mIsReady = false;
         private GameObject[,] mTiles;
 
         void Awake()
@@ -40,6 +39,11 @@ namespace DroneGame
         }
 
         private void Start()
+        {
+            GenerateLevel();
+        }
+
+        public void GenerateLevel()
         {
             InstantiateGrid(m_LevelTextures[0]);
         }
@@ -72,9 +76,14 @@ namespace DroneGame
                 }
             }
 
-            OnLevelGenerated?.Invoke();
+            mIsReady = true;
         }
 
+
+        public bool IsReady()
+        {
+            return mIsReady;
+        }
 
         /// <summary>
         /// Returns the object for the respective color based on color map

@@ -30,6 +30,9 @@ namespace DroneGame
 
         void UpdateCamera()
         {
+            if (!GameManger.pInstance.IsReady())
+                return;
+
             Quaternion cameraTargetRot = Quaternion.Euler(mMouseY, mMouseX, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, cameraTargetRot, m_CameraTurnSpeed * Time.deltaTime);
         }
