@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// Color to Object map
+    /// </summary>
     [System.Serializable]
     public class ColorMap
     {
@@ -11,16 +14,20 @@ namespace DroneGame
         public Color32 _ReferenceColor;
     }
 
+    /// <summary>
+    /// Class to create a grid based level with provided pixel color data.
+    /// </summary>
     public class LevelCreator : MonoBehaviour
     {
-        [SerializeField] private float m_TileOffset = default;
-        [SerializeField] private float m_TileSize = default;
-        [SerializeField] private int m_GridSize = default;
+        [SerializeField] private float m_TileOffset = default; //Tile offset of the grid system
+        [SerializeField] private float m_TileSize = default; //Tile size in the grid
+        [SerializeField] private int m_GridSize = default; // Grid size, defines the pixels read to genereate level.
         [SerializeField] private GameObject m_GridParent = default;
         [SerializeField] private List<ColorMap> m_ColorMaps = new List<ColorMap>();
         [SerializeField] private List<Texture2D> m_LevelTextures = new List<Texture2D>();
 
         public static LevelCreator pInstance { get; private set; }
+        public static System.Action OnLevelGenerated;
 
         private GameObject[,] mTiles;
 
@@ -33,11 +40,6 @@ namespace DroneGame
         }
 
         private void Start()
-        {
-            LoadNextLevel();
-        }
-
-        public void LoadNextLevel()
         {
             InstantiateGrid(m_LevelTextures[0]);
         }
@@ -69,8 +71,16 @@ namespace DroneGame
                     }
                 }
             }
+
+            OnLevelGenerated?.Invoke();
         }
 
+
+        /// <summary>
+        /// Returns the object for the respective color based on color map
+        /// </summary>
+        /// <param name="color">Color for which object data is needed</param>
+        /// <returns>Object matching the color data</returns>
         public List<GameObject> GetTileObject(Color32 color)
         {
             ColorMap tileMap = m_ColorMaps.Find(x => (color.r == x._ReferenceColor.r && color.g == x._ReferenceColor.g && color.b == x._ReferenceColor.b));

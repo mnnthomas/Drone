@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 613662859}
   - component: {fileID: 613662860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LaserSights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 7587950020616193225}
   - component: {fileID: 1593874697}
   - component: {fileID: 1593874698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left_Barrel
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 712389755236830877}
   m_SpawnClip: {fileID: 8300000, guid: 312fb3d94d119094aa794abc587f2059, type: 3}
+  m_SpawnEffect: {fileID: 0}
   m_BulletName: Primary Bullet
 --- !u!1 &1576803959066190150
 GameObject:
@@ -346,7 +347,7 @@ GameObject:
   - component: {fileID: 6622916117342485901}
   - component: {fileID: 5320688370889663258}
   - component: {fileID: 1052368720011239376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MissileLeft_Barrel
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -536,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 5107780435099207894}
   m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
+  m_SpawnEffect: {fileID: 0}
   m_BulletName: Homing Missile
 --- !u!1 &2159873589937812028
 GameObject:
@@ -549,7 +551,7 @@ GameObject:
   - component: {fileID: 2159873589934714428}
   - component: {fileID: 2159873589935811836}
   - component: {fileID: 457724708}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DroneMesh
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -643,7 +645,7 @@ GameObject:
   - component: {fileID: 5736894230130633745}
   - component: {fileID: 2649345002153233073}
   - component: {fileID: 2158403597286851053}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drone
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -723,6 +725,7 @@ MonoBehaviour:
   - {fileID: 1052368720011239376}
   m_LaserSights: {fileID: 613662860}
   m_TurretTag: Turret
+  m_ScanLayerToIgnore: Player
   m_MaxScannedTargets: 4
   m_MissleTossDelay: 0.5
   m_MissileScanDelay: 3
@@ -852,7 +855,7 @@ GameObject:
   - component: {fileID: 8516326823661876328}
   - component: {fileID: 482958181}
   - component: {fileID: 8076104665527304266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MissileRight_Barrel
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1042,6 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 8429506873711026600}
   m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
+  m_SpawnEffect: {fileID: 0}
   m_BulletName: Homing Missile
 --- !u!1 &4059522003733717517
 GameObject:
@@ -1057,7 +1061,7 @@ GameObject:
   - component: {fileID: 8617983468632832714}
   - component: {fileID: 1230350592}
   - component: {fileID: 1230350593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right_Barrel
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1247,6 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 659360626771476574}
   m_SpawnClip: {fileID: 8300000, guid: 312fb3d94d119094aa794abc587f2059, type: 3}
+  m_SpawnEffect: {fileID: 0}
   m_BulletName: Primary Bullet
 --- !u!1 &4773625245590403609
 GameObject:
@@ -1257,7 +1262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6432013250435308671}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1300,7 @@ GameObject:
   - component: {fileID: 5320688371973937032}
   - component: {fileID: 5320688371973937047}
   - component: {fileID: 9027668171413109304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

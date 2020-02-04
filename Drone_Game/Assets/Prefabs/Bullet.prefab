@@ -108,6 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BulletData: {fileID: 11400000, guid: c4ea9738f7da5b84cb67c9ac30076c04, type: 2}
   m_ExplosionParticle: {fileID: 0}
+  m_TargetMousePointer: 1
+  m_MousePointerIgnoreLayer: Player
 --- !u!54 &4468217929950768530
 Rigidbody:
   m_ObjectHideFlags: 0

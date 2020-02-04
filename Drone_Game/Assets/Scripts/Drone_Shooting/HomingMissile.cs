@@ -5,10 +5,13 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// Inherits from BulletBase, Handle specific cases for homing missile functionality
+    /// </summary>
     public class HomingMissile : BulletBase
     {
-        [SerializeField] private float m_MissileLaunchForce = default;
-        [SerializeField] private float m_MissileSeekStartDelay = default;
+        [SerializeField] private float m_MissileLaunchForce = default; // The force at which the missle is thrusted upwards
+        [SerializeField] private float m_MissileSeekStartDelay = default; // Iniitial delay before the homing missile starts seeking
         [SerializeField] private AudioSource m_AudioSource = default;
         [SerializeField] private AudioClip m_MissileSeekClip = default;
         [SerializeField] private AudioClip m_MissileFollowClip = default;
@@ -20,7 +23,7 @@ namespace DroneGame
         {
             mCurTarget = target;
             mRigidbody.AddForce(m_MissileLaunchForce * forward, ForceMode.Force);
-            transform.LookAt(Vector3.up);
+            transform.LookAt(Vector3.down);
             if (m_AudioSource && m_MissileSeekClip)
             {
                 m_AudioSource.clip = m_MissileSeekClip;

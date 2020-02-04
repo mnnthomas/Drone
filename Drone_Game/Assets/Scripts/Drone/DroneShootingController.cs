@@ -4,27 +4,38 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// The Drone Shooting controller enables the Drone barrels to shoot based on User Inputs.
+    /// This class also handles the scanning of Turrets for the Homing missile targets
+    /// </summary>
     public class DroneShootingController : MonoBehaviour
     {
         [Header("Firing axis keys")]
         [SerializeField] private string m_PrimaryWeaponKey = default;
         [SerializeField] private string m_SecondayWeaponKey = default;
 
-       // [SerializeField] private BulletBarrel m_LeftBarrel = default;
-       // [SerializeField] private BulletBarrel m_RightBarrel = default;
+        [Header("Barrel references")]
         [SerializeField] private List<BulletBarrel> m_PrimaryBarrels = new List<BulletBarrel>();
         [SerializeField] private List<BulletBarrel> m_MissileBarrels = new List<BulletBarrel>();
 
+        [Header("References for Laser scanning the turrets")]
         [SerializeField] private LineRenderer m_LaserSights = default;
         [SerializeField] private string m_TurretTag = default;
+        [SerializeField] private string m_ScanLayerToIgnore = default;
         [SerializeField] private int m_MaxScannedTargets = default;
         [SerializeField] private float m_MissleTossDelay = default;
         [SerializeField] private int m_MissileScanDelay = default;
 
         private float mMissleLaunchTime;
         private bool mLaunchingMissile = false;
+        private LayerMask mIgnoreLayer;
 
         private List<GameObject> mCurScannedTurrets = new List<GameObject>();
+
+        private void Start()
+        {
+            mIgnoreLayer = ~(1 << LayerMask.NameToLayer(m_ScanLayerToIgnore));
+        }
 
         private void Update()
         {
@@ -55,7 +66,7 @@ namespace DroneGame
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mIgnoreLayer))
             {
                 m_LaserSights.enabled = true;
                 m_LaserSights.SetPosition(0, m_LaserSights.transform.position);

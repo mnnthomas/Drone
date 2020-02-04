@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// A general Utilities class to hold needed helper classes/methods
+    /// </summary>
     public class Utilities
     {
         /// <summary>

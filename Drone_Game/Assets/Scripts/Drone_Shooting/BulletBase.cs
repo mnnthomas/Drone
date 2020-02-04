@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// An Abstarct base class for Bullets. 
+    /// This class handles Instantiating, Collision and destroying of all types of bullet
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     public abstract class BulletBase : MonoBehaviour
     {

@@ -24,10 +24,13 @@ namespace DroneGame
         }
     }
 
+    /// <summary>
+    /// Object pool manager handles initial pooling of objects and dynamically spawns object at requested transform and adds object back to pool once used..
+    /// </summary>
     public class ObjectPoolManager : MonoBehaviour
     {
-        public static ObjectPoolManager pInstance { get; private set; } = null;
-        public static System.Action OnObjectsPooled = null;
+        public static ObjectPoolManager pInstance { get; private set; } = null; // Singleton 
+        public static System.Action OnObjectsPooled = null; // Action after all the objects are initially instantiated.
 
         [SerializeField] private List<ObjectToPool> m_ObjectsToPool = new List<ObjectToPool>();
 
@@ -58,6 +61,11 @@ namespace DroneGame
             OnObjectsPooled?.Invoke();
         }
 
+        /// <summary>
+        /// Checks if the objects belongs to any existing pool and returns it back to pool.
+        /// Also, resets the transform after putting it back in pool
+        /// </summary>
+        /// <param name="obj"></param>
         public void AddBackToPool(GameObject obj)
         {
             if (obj == null)
@@ -77,6 +85,15 @@ namespace DroneGame
             Debug.Log("The object does not belong to any pooled objects " + obj.name);
         }
 
+        /// <summary>
+        /// Checks for the next available free objects in the given pool and spawns(setactive = true) it in desired location
+        /// If there are no available objets, Tries to create new based on _CanSpawnAboveCount bool
+        /// </summary>
+        /// <param name="name">name of the object that needed to be spawned</param>
+        /// <param name="pos">desired position</param>
+        /// <param name="rot">desired rotation</param>
+        /// <param name="parent">desired parent</param>
+        /// <returns></returns>
         public GameObject SpawnObject(string name, Vector3 pos = default, Quaternion rot = default, Transform parent = null)
         {
             ObjectToPool curPool = m_ObjectsToPool.Find(x => x._Name == name);

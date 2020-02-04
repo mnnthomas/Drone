@@ -6,6 +6,7 @@ namespace DroneGame
 {
     /// <summary>
     /// Handles drone movement in X,Y,Z axis and also updates drone's forward based on camera's forward.
+    /// The sound for drone's Idle and movement is also handled here
     /// </summary>
     public class DroneMovementController : MonoBehaviour
     {
@@ -77,6 +78,10 @@ namespace DroneGame
             UpdateEngineSound(movementVector);
         }
 
+        /// <summary>
+        /// Checks for doubleClick on the drone movement input keys in update.
+        /// Decides the direction of dashing based on the double Click of input keys.
+        /// </summary>
         private void CheckDoubleClick()
         {
             if(Time.time - mPreviousClickTime > 0.5f && !string.IsNullOrEmpty(mPreviousClickedKey))
@@ -123,6 +128,12 @@ namespace DroneGame
             }            
         }
 
+
+        /// <summary>
+        /// Coroutine to dash the drone in the given direction
+        /// </summary>
+        /// <param name="direction">provides the direction vector for the drone to move</param>
+        /// <returns>null</returns>
         IEnumerator Dash(Vector3 direction)
         {
             Vector3 velocity = Vector3.zero;
@@ -142,6 +153,12 @@ namespace DroneGame
             mIsDashing = false;
         }
 
+
+        /// <summary>
+        /// Handles Engine sound based on the movement vector. 
+        /// Idle and movement sounds
+        /// </summary>
+        /// <param name="movement">current movement vector</param>
         private void UpdateEngineSound(Vector3 movement)
         {
             if(movement == Vector3.zero && !mIsIdlePlaying)
