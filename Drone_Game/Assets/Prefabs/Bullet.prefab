@@ -106,9 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6790f030d18e9349932e88e2dc48d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 10
-  m_Speed: 100
-  m_DurationAlive: 5
+  m_BulletData: {fileID: 11400000, guid: c4ea9738f7da5b84cb67c9ac30076c04, type: 2}
   m_ExplosionParticle: {fileID: 0}
 --- !u!54 &4468217929950768530
 Rigidbody:

@@ -140,10 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f51eeed565f946b52a807b784cfde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 50
-  m_Speed: 50
-  m_TurnSpeed: 10
-  m_DurationAlive: 20
+  m_BulletData: {fileID: 11400000, guid: c4cf7efbbb363064da20084501eeb3e1, type: 2}
   m_ExplosionParticle: {fileID: 0}
   m_MissileLaunchForce: 750
   m_MissileSeekStartDelay: 1

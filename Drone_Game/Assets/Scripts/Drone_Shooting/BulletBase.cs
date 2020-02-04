@@ -7,10 +7,7 @@ namespace DroneGame
     [RequireComponent(typeof(Rigidbody))]
     public abstract class BulletBase : MonoBehaviour
     {
-        [SerializeField] protected float m_Damage = default;
-        [SerializeField] protected float m_Speed = default;
-        [SerializeField] protected float m_TurnSpeed = default;
-        [SerializeField] protected float m_DurationAlive = default;
+        [SerializeField] protected BulletData m_BulletData = default;
         [SerializeField] protected GameObject m_ExplosionParticle = default;
 
         protected Transform mCurTarget;
@@ -22,7 +19,7 @@ namespace DroneGame
         private void OnEnable()
         {
             mRigidbody = GetComponent<Rigidbody>();
-            Invoke("DestroyBullet", m_DurationAlive);
+            Invoke("DestroyBullet", m_BulletData.DurationAlive);
         }
 
         public abstract void InitializeBullet(Vector3 forward, Transform target = null);

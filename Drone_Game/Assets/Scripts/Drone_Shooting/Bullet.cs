@@ -10,7 +10,7 @@ namespace DroneGame
         {
             mCurDirection = forward;
             mInitialized = true;
-            mRigidbody.velocity = mCurDirection * m_Speed;
+            mRigidbody.velocity = mCurDirection * m_BulletData.Speed;
             transform.LookAt(mCurDirection);
         }
 

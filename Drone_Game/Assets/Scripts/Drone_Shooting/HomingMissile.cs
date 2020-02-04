@@ -52,9 +52,9 @@ namespace DroneGame
                     m_AudioSource.Play();
                 }
 
-                mRigidbody.velocity = transform.forward * m_Speed;
+                mRigidbody.velocity = transform.forward * m_BulletData.Speed;
                 Quaternion lookRot = Quaternion.LookRotation(mCurTarget.position - transform.position);
-                mRigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, lookRot, m_TurnSpeed));
+                mRigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, lookRot, m_BulletData.TurnSpeed));
             }
             else if(mIsSeeking && !mCurTarget)
             {
