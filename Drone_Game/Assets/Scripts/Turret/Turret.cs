@@ -13,8 +13,6 @@ namespace DroneGame
         [SerializeField] private TurretScanner m_Scanner = default;
 
         [SerializeField] private GameObject m_DestroyEffect = default;
-        [SerializeField] private AudioClip m_DestroyClip = default;
-        [SerializeField] private AudioSource m_AudioSource = default;
 
         private Transform mTarget;
         private float mHealth;
@@ -28,15 +26,15 @@ namespace DroneGame
 
         public void OnHealthDepleted()
         {
+            DestroyTurret();
         }
 
         public void TakeDamage(float value)
         {
             mHealth -= value;
-            OnHealthDepleted();
 
             if (mHealth <= 0)
-                DestroyTurret();
+                OnHealthDepleted();
         }
 
         void Update()
@@ -67,12 +65,11 @@ namespace DroneGame
 
         public void DestroyTurret()
         {
-            if(m_AudioSource && m_DestroyClip)
-                m_AudioSource.PlayOneShot(m_DestroyClip);
+            if (m_DestroyEffect)
+                Instantiate(m_DestroyEffect, (transform.position + m_DestroyEffect.transform.position), Quaternion.identity);
 
             pIsActive = false;
             gameObject.SetActive(false);
-
         }
     }
 }

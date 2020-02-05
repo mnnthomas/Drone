@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5220568006659493554}
   - component: {fileID: 4308889878771717478}
   - component: {fileID: 4153280103032517479}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MissileMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 7919222521139402020}
   - component: {fileID: 6163956068070410144}
   - component: {fileID: -1759032705437480863}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HomingMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,9 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletData: {fileID: 11400000, guid: c4cf7efbbb363064da20084501eeb3e1, type: 2}
-  m_IgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 1280
   m_IgnoreTags:
   - Player
   - TurretScan

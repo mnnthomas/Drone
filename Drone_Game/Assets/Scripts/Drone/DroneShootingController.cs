@@ -46,7 +46,8 @@ namespace DroneGame
             }
             else if (Input.GetButtonUp(m_SecondayWeaponKey))
             {
-                StartCoroutine(FireMissiles());
+                if(IsMissileReady())
+                    StartCoroutine(FireMissiles());
             }
         }
 
@@ -58,7 +59,7 @@ namespace DroneGame
 
         public bool IsMissileReady()
         {
-            return !(mMissleLaunchTime != 0 && Time.time - mMissleLaunchTime <= m_MissileScanDelay) || mLaunchingMissile;
+            return (Time.time - mMissleLaunchTime > m_MissileScanDelay) && !mLaunchingMissile;
         }
 
         private void ScanTargets()
@@ -70,7 +71,6 @@ namespace DroneGame
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, m_LayerMask))
             {
-                Debug.Log(" >> " + hit.collider.gameObject.name);
                 m_LaserSights.enabled = true;
                 m_LaserSights.SetPosition(0, m_LaserSights.transform.position);
                 m_LaserSights.SetPosition(1, hit.point);
@@ -82,18 +82,19 @@ namespace DroneGame
         IEnumerator FireMissiles()
         {
             m_LaserSights.enabled = false;
+            mMissleLaunchTime = Time.time;
+            mLaunchingMissile = true;
+
             if (mCurScannedTurrets.Count > 0 && m_MissileBarrels.Count > 0)
             {
-                mLaunchingMissile = true;
                 for (int i = 0; i < mCurScannedTurrets.Count; i++)
                 {
                     m_MissileBarrels[i % 2].Shoot(mCurScannedTurrets[i].transform);
                     yield return new WaitForSeconds(m_MissleTossDelay);
                 }
                 mCurScannedTurrets.Clear();
-                mMissleLaunchTime = Time.time;
-                mLaunchingMissile = false;
             }
+            mLaunchingMissile = false;
         }
     }
 }

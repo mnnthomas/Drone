@@ -12,7 +12,6 @@ namespace DroneGame
     public abstract class BulletBase : MonoBehaviour
     {
         [SerializeField] protected BulletData m_BulletData = default;
-        [SerializeField] protected List<string> m_IgnoreTags = default;
         [SerializeField] protected GameObject m_ExplosionParticle = default;
 
         protected Transform mCurTarget;
@@ -31,10 +30,7 @@ namespace DroneGame
 
         private void OnTriggerEnter(Collider other)
         {
-            //TODO: Need to do a layermask check instead of tag
-            if (m_IgnoreTags.Contains(other.gameObject.tag))
-                return;
-
+            //Debug.Log(other.name);
             OnCollided(other.gameObject);
         }
 

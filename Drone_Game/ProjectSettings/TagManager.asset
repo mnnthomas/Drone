@@ -19,8 +19,8 @@ TagManager:
   - Turret
   - TurretScan
   - Bullet
-  - 
-  - 
+  - HomingMissile
+  - EnemyMissile
   - 
   - 
   - 

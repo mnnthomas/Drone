@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3945834504511123272}
   - component: {fileID: -5865144430593640174}
   - component: {fileID: 4468217929950768530}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,14 +107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletData: {fileID: 11400000, guid: c4ea9738f7da5b84cb67c9ac30076c04, type: 2}
-  m_IgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 1280
   m_IgnoreTags:
   - Player
   - TurretScan
   m_ExplosionParticle: {fileID: 0}
-  m_TargetMousePointer: 0
+  m_TargetMousePointer: 1
   m_MousePointerIgnoreLayer: Player
 --- !u!54 &4468217929950768530
 Rigidbody:

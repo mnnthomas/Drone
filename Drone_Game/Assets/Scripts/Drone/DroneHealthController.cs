@@ -17,16 +17,15 @@ namespace DroneGame
 
         public void OnHealthDepleted()
         {
-           
+            GameManger.pInstance.OnGameOver();
         }
 
         public void TakeDamage(float value)
         {
             pCurHealth -= value;
-            OnHealthDepleted();
 
             if (pCurHealth <= 0)
-                GameManger.pInstance.OnGameOver();
+                OnHealthDepleted();
         }
     }
 }

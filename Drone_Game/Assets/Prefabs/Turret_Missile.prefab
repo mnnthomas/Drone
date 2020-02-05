@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5220568006659493554}
   - component: {fileID: 4308889878771717478}
   - component: {fileID: 4153280103032517479}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MissileMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6163956068070410144}
   - component: {fileID: -1759032705437480863}
   - component: {fileID: 8277764547146030100}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Turret_Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

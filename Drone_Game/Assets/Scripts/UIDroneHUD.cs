@@ -25,18 +25,18 @@ namespace DroneGame
         // Update is called once per frame
         void LateUpdate()
         {
-            if (!GameManger.pInstance.IsReady())
-                return;
-
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            UpdatePitchAndRoll();
-            UpdateAltitudeAndTilt();
-            UpdateAngleBar();
-            UpdateMissileReadyStatus();
+            if (GameManger.pInstance.IsReady())
+            {
+                UpdatePitchAndRoll();
+                UpdateAltitudeAndTilt();
+                UpdateAngleBar();
+                UpdateMissileReadyStatus();
+            }
             UpdateHealthBar();
         }
 
