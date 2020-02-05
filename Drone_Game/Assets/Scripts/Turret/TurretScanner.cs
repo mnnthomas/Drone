@@ -45,6 +45,8 @@ namespace DroneGame
 
         private void OnTriggerEnter(Collider other)
         {
+            //Turret currenly scans to see if the target is within its scan collider to start lockdown timer.
+            //The check to see if target is in front can be achived using DotProduct, Currently not doing it to have better gameplay experience 
             if (other.tag == m_LockdownTag)
             {
                 mPlayerObject = other.gameObject;
