@@ -68,6 +68,7 @@ namespace DroneGame
             if (m_DestroyEffect)
                 Instantiate(m_DestroyEffect, (transform.position + m_DestroyEffect.transform.position), Quaternion.identity);
 
+            GameManger.pInstance.OnTurretDestroyed();
             pIsActive = false;
             gameObject.SetActive(false);
         }

@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MouseXKey: Mouse X
   m_MouseYKey: Mouse Y
-  m_CameraTurnSpeed: 2
+  m_CameraTurnSpeed: 2.5
   m_CameraPitchClamp:
     Min: -35
     Max: 45

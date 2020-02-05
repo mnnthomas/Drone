@@ -7,6 +7,8 @@ namespace DroneGame
 {
     public class UIGameHUD : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI m_TurrentCountText = default;
+        [SerializeField] private TextMeshProUGUI m_GameText = default;
         [SerializeField] private TextMeshProUGUI m_CountDownText = default;
         [SerializeField] private int m_CountDownTimer = default;
 
@@ -29,6 +31,17 @@ namespace DroneGame
             }
             m_CountDownText.gameObject.SetActive(false);
             callback?.Invoke();
+        }
+
+        public void UpdateTurrets(int value)
+        {
+            m_TurrentCountText.text = value.ToString();
+        }
+
+        public void ShowGameText(string text)
+        {
+            m_GameText.gameObject.SetActive(true);
+            m_GameText.text = text;
         }
     }
 }

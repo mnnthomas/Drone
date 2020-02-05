@@ -12,8 +12,11 @@ namespace DroneGame
 
         protected virtual void Start()
         {
-            RewindManager.pInstance.OnStartRewind += StartRewind;
-            RewindManager.pInstance.OnStopRewind += StopRewind;
+            if (RewindManager.pInstance)
+            {
+                RewindManager.pInstance.OnStartRewind += StartRewind;
+                RewindManager.pInstance.OnStopRewind += StopRewind;
+            }
         }
 
         protected virtual void StartRewind()
@@ -36,8 +39,11 @@ namespace DroneGame
 
         protected virtual void OnDestroy()
         {
-            RewindManager.pInstance.OnStartRewind -= StartRewind;
-            RewindManager.pInstance.OnStopRewind -= StopRewind;
+            if(RewindManager.pInstance)
+            {
+                RewindManager.pInstance.OnStartRewind -= StartRewind;
+                RewindManager.pInstance.OnStopRewind -= StopRewind;
+            }
         }
     }
 }
