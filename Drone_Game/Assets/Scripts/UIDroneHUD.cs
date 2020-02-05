@@ -33,25 +33,47 @@ namespace DroneGame
 
         private void UpdateUI()
         {
-            if(m_DroneMeshTransform && m_PitchText && m_RollText)
+            UpdatePitchAndRoll();
+            UpdateAltitudeAndTilt();
+            UpdateAngleBar();
+            UpdateMissileReadyStatus();
+            UpdateHealthBar();
+        }
+
+        private void UpdatePitchAndRoll()
+        {
+            if (m_DroneMeshTransform && m_PitchText && m_RollText)
             {
                 m_PitchText.text = Utilities.NegativeEuler(m_DroneMeshTransform.localEulerAngles.x).ToString("F");
                 m_RollText.text = Utilities.NegativeEuler(m_DroneMeshTransform.localEulerAngles.z).ToString("F");
             }
+        }
+
+        private void UpdateAltitudeAndTilt()
+        {
             if (m_DroneTransform && m_AltitudeText && m_CameraTiltText)
             {
                 m_CameraTiltText.text = Utilities.NegativeEuler(m_DroneTransform.localEulerAngles.x).ToString("F");
                 m_AltitudeText.text = m_DroneTransform.position.y.ToString("F");
             }
+        }
+
+        private void UpdateAngleBar()
+        {
             if (m_AngleBar)
                 m_AngleBar.rectTransform.anchoredPosition = new Vector2(0, m_AngleBarMap.GetMappedValue(Utilities.NegativeEuler(m_DroneTransform.localEulerAngles.x)));
+        }
 
+        private void UpdateMissileReadyStatus()
+        {
             if (m_MissileReady && m_DroneShootingController)
                 m_MissileReady.enabled = m_DroneShootingController.IsMissileReady();
+        }
 
+        private void UpdateHealthBar()
+        {
             if (m_HealthSlider && m_DroneHealthController)
                 m_HealthSlider.value = m_DroneHealthController.pCurHealth;
-
         }
     }
 }
