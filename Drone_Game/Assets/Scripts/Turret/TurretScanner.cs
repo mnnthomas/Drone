@@ -33,7 +33,6 @@ namespace DroneGame
 
         private void OnPlayerScanned()
         {
-            Debug.Log(" >>> Player Scanned !");
             m_Turret.StartBarrage(mPlayerObject.transform);
         }
 

@@ -4,16 +4,23 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    [RequireComponent(typeof(DroneHealthController))]
     public class DroneHealthRewind : BaseRewind
     {
-        [SerializeField] private DroneHealthController m_DroneHealthController = default;
+        private DroneHealthController mDroneHealthController = default;
         private List<float> mHealthList = new List<float>();
+
+        protected override void Start()
+        {
+            base.Start();
+            mDroneHealthController = GetComponent<DroneHealthController>();
+        }
 
         protected override void Rewind()
         {
             if (mHealthList.Count > 0)
             {
-                m_DroneHealthController.SetCurrentHealth(mHealthList[0]);
+                mDroneHealthController.SetCurrentHealth(mHealthList[0]);
                 mHealthList.RemoveAt(0);
             }
             else
@@ -25,7 +32,7 @@ namespace DroneGame
             if (mHealthList.Count > Mathf.Round(RewindManager.pInstance.pRewindDuration / Time.fixedDeltaTime))
                 mHealthList.RemoveAt(mHealthList.Count - 1);
 
-            mHealthList.Insert(0, m_DroneHealthController.pCurHealth);
+            mHealthList.Insert(0, mDroneHealthController.pCurHealth);
         }
     }
 }

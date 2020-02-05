@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 2158403597286851053}
   - component: {fileID: 2132504829}
   - component: {fileID: 2132504828}
-  - component: {fileID: 1122089827364486597}
+  - component: {fileID: 586323750629589290}
   m_Layer: 8
   m_Name: Drone
   m_TagString: Player
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxHealth: 100
---- !u!114 &1122089827364486597
+--- !u!114 &586323750629589290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -886,7 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899bb46096f9dae458110dd765354e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DroneHealthController: {fileID: 2132504828}
 --- !u!1 &3009283717099063186
 GameObject:
   m_ObjectHideFlags: 0

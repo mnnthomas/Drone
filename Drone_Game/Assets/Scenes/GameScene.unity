@@ -2303,7 +2303,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RewindManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 580307504}
     - target: {fileID: 854463265804743588, guid: cf9490aac147ace48a38c05ab3b89df0,
         type: 3}
       propertyPath: m_AnchorMax.x

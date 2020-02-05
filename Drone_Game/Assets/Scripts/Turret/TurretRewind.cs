@@ -48,7 +48,6 @@ namespace DroneGame
                 mTurret.pHealth = mTurretDataList[0]._Health;
                 if (mTurretDataList.Count >= 2 && mTurretDataList[0]._IsAlive == false && mTurretDataList[1]._IsAlive == true)
                 {
-                    Debug.Log("Setting turret alive");
                     mTurret.OnTurretRewinded();
                 }
 
