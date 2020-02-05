@@ -20,6 +20,11 @@ namespace DroneGame
             GameManger.pInstance.OnGameOver();
         }
 
+        public void SetCurrentHealth(float value)
+        {
+            pCurHealth = value;
+        }
+
         public void TakeDamage(float value)
         {
             pCurHealth -= value;

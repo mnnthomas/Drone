@@ -22,17 +22,16 @@ namespace DroneGame
         [SerializeField] private float m_TurnSpeed = default;
         [SerializeField] private float m_DashDistance = default;
         [SerializeField] private float m_DashDuration = default;
+        [SerializeField] private bool m_AllowTilting = default;
+        [SerializeField] private float m_TiltAngle = default;
+        [SerializeField] private float m_BaseHeight = default;
 
         [Header("Drone movement audio")]
         [SerializeField] private Utilities.MinMax m_MovingPitchRange = default;
         [SerializeField] private Utilities.MinMax m_IdlingPitchRange = default;
         [SerializeField] private float m_MovingVolume = default;
         [SerializeField] private float m_IdlingVolume = default;
-
-        [Header("Experiemental feature")]
-        [SerializeField] private bool m_AllowTilting = default;
-        [SerializeField] private float m_TiltAngle = default;
-
+ 
         [Header("Object references")]
         [SerializeField] private Camera m_Camera = default;
         [SerializeField] private GameObject m_DroneMesh = default;
@@ -45,6 +44,7 @@ namespace DroneGame
         private float mPreviousClickedAxis;
         private float mPreviousClickTime;
         private bool mIsDashing;
+        private float mDoubleClickDelay = 0.5f;
 
         private void Start()
         {
@@ -80,8 +80,8 @@ namespace DroneGame
                 movementVector = new Vector3(Input.GetAxis(m_HorizontalKey) * m_HorizontalSpeed, Input.GetAxis(m_VerticalKey) * m_VerticalSpeed, Input.GetAxis(m_ForwardKey) * m_ForwardSpeed) * Time.deltaTime;
                 transform.Translate(movementVector, Space.Self);
 
-                if (transform.position.y < 1.5f)
-                    transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+                if (transform.position.y < m_BaseHeight)
+                    transform.position = new Vector3(transform.position.x, m_BaseHeight, transform.position.z);
             }
 
             UpdateEngineSound(movementVector);
@@ -93,7 +93,7 @@ namespace DroneGame
         /// </summary>
         private void CheckDoubleClick()
         {
-            if(Time.time - mPreviousClickTime > 0.5f && !string.IsNullOrEmpty(mPreviousClickedKey))
+            if(Time.time - mPreviousClickTime > mDoubleClickDelay && !string.IsNullOrEmpty(mPreviousClickedKey))
             {
                 mPreviousClickedKey = default;
                 mPreviousClickTime = default;
@@ -119,7 +119,7 @@ namespace DroneGame
                         mPreviousClickTime = Time.time;
                         return;
                     }
-                    else if (mPreviousClickedKey == curKey && Utilities.IsPositiveValue(mPreviousClickedAxis) == Utilities.IsPositiveValue(Input.GetAxis(curKey)) && Time.time - mPreviousClickTime <= 0.5f)
+                    else if (mPreviousClickedKey == curKey && Utilities.IsPositiveValue(mPreviousClickedAxis) == Utilities.IsPositiveValue(Input.GetAxis(curKey)) && Time.time - mPreviousClickTime <= mDoubleClickDelay)
                     {
                         bool isPositiveAxis = Utilities.IsPositiveValue(Input.GetAxis(curKey));
                         if (curKey == m_ForwardKey)
@@ -147,8 +147,8 @@ namespace DroneGame
         {
             Vector3 velocity = Vector3.zero;
             Vector3 targetPosition = transform.position + direction * m_DashDistance;
-            if (targetPosition.y < 1.5f)
-                targetPosition.y = 1.5f;
+            if (targetPosition.y < m_BaseHeight)
+                targetPosition.y = m_BaseHeight;
 
             mIsDashing = true;
             float startTime = Time.time;
@@ -189,7 +189,7 @@ namespace DroneGame
 
         /// <summary>
         /// Turns the drone towards camera's forward. 
-        /// Added an experimental drone tilt feature.
+        /// Also tilts the drone based on the moving direction
         /// </summary>
         private void Turn()
         {

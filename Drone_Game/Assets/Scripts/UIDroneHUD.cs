@@ -12,6 +12,7 @@ namespace DroneGame
         [SerializeField] private Transform m_DroneMeshTransform = default;
         [SerializeField] private DroneShootingController m_DroneShootingController = default;
         [SerializeField] private DroneHealthController m_DroneHealthController = default;
+        [SerializeField] private RewindManager m_RewindManager = default;
 
         [SerializeField] private Slider m_HealthSlider = default;
         [SerializeField] private TextMeshProUGUI m_PitchText = default;
@@ -19,6 +20,7 @@ namespace DroneGame
         [SerializeField] private TextMeshProUGUI m_AltitudeText = default;
         [SerializeField] private TextMeshProUGUI m_CameraTiltText = default;
         [SerializeField] private Image m_MissileReady = default;
+        [SerializeField] private Image m_RewindReady = default;
         [SerializeField] private Image m_AngleBar = default;
         [SerializeField] private Utilities.RangeMap m_AngleBarMap = default;
 
@@ -36,6 +38,7 @@ namespace DroneGame
                 UpdateAltitudeAndTilt();
                 UpdateAngleBar();
                 UpdateMissileReadyStatus();
+                UpdateRewindReadyStatus();
             }
             UpdateHealthBar();
         }
@@ -67,7 +70,23 @@ namespace DroneGame
         private void UpdateMissileReadyStatus()
         {
             if (m_MissileReady && m_DroneShootingController)
-                m_MissileReady.enabled = m_DroneShootingController.IsMissileReady();
+            {
+                if (m_DroneShootingController.IsMissileReady())
+                    m_MissileReady.color = new Color32(0, 0, 0, 255);
+                else
+                    m_MissileReady.color = new Color32(0, 0, 0, 125);
+            }
+        }
+
+        private void UpdateRewindReadyStatus()
+        {
+            if(m_RewindManager && m_RewindReady)
+            {
+                if(RewindManager.pInstance.IsRewindReady())
+                    m_RewindReady.color = new Color32(0, 0, 0, 255);
+                else
+                    m_RewindReady.color = new Color32(0, 0, 0, 125);
+            }
         }
 
         private void UpdateHealthBar()

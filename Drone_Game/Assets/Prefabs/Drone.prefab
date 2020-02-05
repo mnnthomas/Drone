@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 2158403597286851053}
   - component: {fileID: 2132504829}
   - component: {fileID: 2132504828}
+  - component: {fileID: 1122089827364486597}
   m_Layer: 8
   m_Name: Drone
   m_TagString: Player
@@ -687,12 +688,15 @@ MonoBehaviour:
   m_HorizontalKey: Horizontal
   m_ForwardKey: Forward
   m_VerticalKey: Vertical
-  m_HorizontalSpeed: 25
-  m_ForwardSpeed: 25
-  m_VerticalSpeed: 25
-  m_TurnSpeed: 3
+  m_HorizontalSpeed: 30
+  m_ForwardSpeed: 30
+  m_VerticalSpeed: 30
+  m_TurnSpeed: 2.5
   m_DashDistance: 20
-  m_DashDuration: 0.75
+  m_DashDuration: 0.5
+  m_AllowTilting: 1
+  m_TiltAngle: 15
+  m_BaseHeight: 1.5
   m_MovingPitchRange:
     Min: 0.85
     Max: 1
@@ -701,8 +705,6 @@ MonoBehaviour:
     Max: 0.5
   m_MovingVolume: 0.5
   m_IdlingVolume: 0.2
-  m_AllowTilting: 1
-  m_TiltAngle: 15
   m_Camera: {fileID: 5320688371973937033}
   m_DroneMesh: {fileID: 2159873589937812028}
 --- !u!114 &5736894230130633745
@@ -872,6 +874,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxHealth: 100
+--- !u!114 &1122089827364486597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159873591005079332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899bb46096f9dae458110dd765354e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DroneHealthController: {fileID: 2132504828}
 --- !u!1 &3009283717099063186
 GameObject:
   m_ObjectHideFlags: 0

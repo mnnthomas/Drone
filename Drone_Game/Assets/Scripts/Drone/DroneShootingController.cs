@@ -82,19 +82,19 @@ namespace DroneGame
         IEnumerator FireMissiles()
         {
             m_LaserSights.enabled = false;
-            mMissleLaunchTime = Time.time;
-            mLaunchingMissile = true;
 
             if (mCurScannedTurrets.Count > 0 && m_MissileBarrels.Count > 0)
             {
+                mMissleLaunchTime = Time.time;
+                mLaunchingMissile = true;
                 for (int i = 0; i < mCurScannedTurrets.Count; i++)
                 {
                     m_MissileBarrels[i % 2].Shoot(mCurScannedTurrets[i].transform);
                     yield return new WaitForSeconds(m_MissleTossDelay);
                 }
                 mCurScannedTurrets.Clear();
+                mLaunchingMissile = false;
             }
-            mLaunchingMissile = false;
         }
     }
 }
