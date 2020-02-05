@@ -497,7 +497,7 @@ Transform:
   m_Father: {fileID: 107780124}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90.00001}
---- !u!1 &526069968
+--- !u!1 &580307503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,8 +505,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 526069970}
-  - component: {fileID: 526069969}
+  - component: {fileID: 580307505}
+  - component: {fileID: 580307504}
   m_Layer: 0
   m_Name: RewindManager
   m_TagString: Untagged
@@ -514,13 +514,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &526069969
+--- !u!114 &580307504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526069968}
+  m_GameObject: {fileID: 580307503}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf1375c4adce255468f4b08f1a00db76, type: 3}
@@ -529,13 +529,13 @@ MonoBehaviour:
   m_RewindDuration: 3
   m_RewindCooldown: 20
   m_RewindKey: Rewind
---- !u!4 &526069970
+--- !u!4 &580307505
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526069968}
+  m_GameObject: {fileID: 580307503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2303,7 +2303,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RewindManager
       value: 
-      objectReference: {fileID: 526069969}
+      objectReference: {fileID: 0}
     - target: {fileID: 854463265804743588, guid: cf9490aac147ace48a38c05ab3b89df0,
         type: 3}
       propertyPath: m_AnchorMax.x
