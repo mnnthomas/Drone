@@ -56,9 +56,9 @@ namespace DroneGame
             m_GameHUD.ShowGameText("Game Won!");
         }
 
-        public void OnTurretDestroyed()
+        public void UpdateTurretCount(int value)
         {
-            mCurTurretCount--;
+            mCurTurretCount += value;
             m_GameHUD.UpdateTurrets(mCurTurretCount);
 
             if (mCurTurretCount <= 0)

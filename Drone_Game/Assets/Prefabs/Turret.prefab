@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4333506738253739034}
   - component: {fileID: 4806555997323060574}
   - component: {fileID: -6036801742518942426}
+  - component: {fileID: -7042451025868132259}
   m_Layer: 9
   m_Name: Turret
   m_TagString: Turret
@@ -174,8 +175,28 @@ MonoBehaviour:
   m_MaxHealth: 50
   m_Barrel: {fileID: 9035615155591897371}
   m_Scanner: {fileID: 239815895903590822}
+  m_TurretRenderes:
+  - {fileID: 4333506738253739034}
+  - {fileID: 9197564487419222919}
+  - {fileID: 3470482257530404313}
+  - {fileID: 2069861648142104249}
+  m_TurretColliders:
+  - {fileID: 4806555997323060574}
+  - {fileID: 5750373597430852241}
   m_DestroyEffect: {fileID: 7643129535953889523, guid: 2d511cbae8e560944ae3bc1acd921131,
     type: 3}
+--- !u!114 &-7042451025868132259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851197379136808615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76241d910f1383e458f6a8dd2111ab04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3815275896497033126
 GameObject:
   m_ObjectHideFlags: 0

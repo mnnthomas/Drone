@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace DroneGame
 {
-    [System.Serializable]
     public class BulletTransform
     {
         public Vector3 _Position;
@@ -29,7 +28,6 @@ namespace DroneGame
 
         protected override void Rewind()
         {
-            Debug.Log("Rewinding");
             if (mBulletTransformList.Count > 0)
             {
                 m_BulletBase.transform.position = mBulletTransformList[0]._Position;

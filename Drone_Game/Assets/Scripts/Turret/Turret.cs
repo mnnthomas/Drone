@@ -11,16 +11,19 @@ namespace DroneGame
 
         [SerializeField] private BulletBarrel m_Barrel = default;
         [SerializeField] private TurretScanner m_Scanner = default;
-
+        [SerializeField] private List<Renderer> m_TurretRenderes = default;
+        [SerializeField] private List<BoxCollider> m_TurretColliders = default;
         [SerializeField] private GameObject m_DestroyEffect = default;
 
+
+
         private Transform mTarget;
-        private float mHealth;
+        public float pHealth { get; set; }
         public bool pIsActive { get; private set; }
 
         private void Start()
         {
-            mHealth = m_MaxHealth;
+            pHealth = m_MaxHealth;
             pIsActive = true;
         }
 
@@ -31,15 +34,15 @@ namespace DroneGame
 
         public void TakeDamage(float value)
         {
-            mHealth -= value;
+            pHealth -= value;
 
-            if (mHealth <= 0)
+            if (pHealth <= 0)
                 OnHealthDepleted();
         }
 
         void Update()
         {
-            if(mTarget)
+            if(mTarget && pIsActive)
             {
                 Vector3 targetPos = new Vector3(mTarget.transform.position.x, transform.position.y, mTarget.transform.position.z);
                 m_Barrel.transform.LookAt(targetPos);
@@ -63,14 +66,30 @@ namespace DroneGame
             mTarget = null;
         }
 
+        public void OnTurretRewinded()
+        {
+            GameManger.pInstance.UpdateTurretCount(1);
+            pIsActive = true;
+            EnableTurret(true);
+        }
+
         public void DestroyTurret()
         {
             if (m_DestroyEffect)
                 Instantiate(m_DestroyEffect, (transform.position + m_DestroyEffect.transform.position), Quaternion.identity);
 
-            GameManger.pInstance.OnTurretDestroyed();
+            GameManger.pInstance.UpdateTurretCount(-1);
             pIsActive = false;
-            gameObject.SetActive(false);
+            EnableTurret(false);
+        }
+
+        void EnableTurret(bool value)
+        {
+            for (int i = 0; i < m_TurretRenderes.Count; i++)
+                m_TurretRenderes[i].enabled = value;
+
+            for (int i = 0; i < m_TurretColliders.Count; i++)
+                m_TurretColliders[i].enabled = value;
         }
     }
 }
