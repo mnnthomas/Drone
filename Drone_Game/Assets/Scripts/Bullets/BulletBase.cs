@@ -28,6 +28,11 @@ namespace DroneGame
 
         public abstract void InitializeBullet(Vector3 forward, Transform target = null);
 
+        public void SetKinetic(bool value)
+        {
+            mRigidbody.isKinematic = value;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             //Debug.Log(other.name);

@@ -35,6 +35,9 @@ namespace DroneGame
 
         private void Update()
         {
+            if (mRigidbody.isKinematic)
+                return;
+
             if(Time.time - mMissleLaunchTime >= m_MissileSeekStartDelay && !mIsSeeking)
             {
                 mIsSeeking = true;

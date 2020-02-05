@@ -446,7 +446,7 @@ MonoBehaviour:
   m_SpawnPoint: {fileID: 1799433546687569275}
   m_SpawnClip: {fileID: 8300000, guid: 7bcb2cb3e26ad75488910dd37ce612e4, type: 3}
   m_SpawnEffect: {fileID: 0}
-  m_BulletName: Turret Homing Missile
+  m_BulletName: Turret Missile
 --- !u!1 &7758876266927097602
 GameObject:
   m_ObjectHideFlags: 0

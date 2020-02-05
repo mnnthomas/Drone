@@ -8,6 +8,7 @@ namespace DroneGame
     {
         public override void InitializeBullet(Vector3 forward, Transform target)
         {
+            mCurTarget = target;
             mCurDirection = (target.position - transform.position);
             mCurDirection.Normalize();
 

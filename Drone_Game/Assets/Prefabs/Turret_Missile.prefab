@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 6163956068070410144}
   - component: {fileID: -1759032705437480863}
   - component: {fileID: 8277764547146030100}
+  - component: {fileID: -7634572990343598879}
   m_Layer: 13
   m_Name: Turret_Missile
   m_TagString: Untagged
@@ -268,3 +269,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BulletData: {fileID: 11400000, guid: fcaf0b72beda04c4dbb781aa8be02a8e, type: 2}
   m_ExplosionParticle: {fileID: 0}
+--- !u!114 &-7634572990343598879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589874968264855123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d545e0fe0ce3ec0468943ef1b44ac838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BulletBase: {fileID: 8277764547146030100}
