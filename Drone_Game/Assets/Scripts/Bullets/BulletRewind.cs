@@ -43,12 +43,16 @@ namespace DroneGame
         {
             base.StartRewind();
             m_BulletBase.SetKinetic(true);
+            if(m_BulletBase.GetComponent<Collider>())
+                m_BulletBase.GetComponent<Collider>().enabled = false;
         }
 
         protected override void StopRewind()
         {
             base.StopRewind();
             m_BulletBase.SetKinetic(false);
+            if (m_BulletBase.GetComponent<Collider>())
+                m_BulletBase.GetComponent<Collider>().enabled = true;
         }
 
         protected override void Record()
