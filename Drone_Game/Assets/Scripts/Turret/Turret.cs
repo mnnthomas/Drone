@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace DroneGame
 {
+    /// <summary>
+    /// Turret class - Handles the turrent activation, firing and destroy
+    /// Extends IHealth to handle health updates on bullet hit
+    /// </summary>
     public class Turret : MonoBehaviour, IHealth
     {
         [SerializeField] private float m_MissileCount = default;
@@ -14,8 +18,6 @@ namespace DroneGame
         [SerializeField] private List<Renderer> m_TurretRenderes = default;
         [SerializeField] private List<BoxCollider> m_TurretColliders = default;
         [SerializeField] private GameObject m_DestroyEffect = default;
-
-
 
         private Transform mTarget;
         public float pHealth { get; set; }
@@ -59,7 +61,9 @@ namespace DroneGame
         {
             for (int i = 0; i < m_MissileCount; i++)
             {
-                m_Barrel.Shoot(mTarget);
+                if (pIsActive)
+                    m_Barrel.Shoot(mTarget);
+
                 yield return new WaitForSeconds(0.5f);
             }
             m_Scanner.ResetScanner();

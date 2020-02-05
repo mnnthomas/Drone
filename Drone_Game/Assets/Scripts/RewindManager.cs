@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the rewind inputs and cooldown
+/// Rewindable Objects like BulletRewind, HealthRewind and TurretRewind register to the RewindManager's actions to start and stop rewind
+/// </summary>
 public class RewindManager : MonoBehaviour
 {
     [SerializeField] private float m_RewindDuration = default;

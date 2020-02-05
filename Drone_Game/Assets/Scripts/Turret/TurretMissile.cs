@@ -14,7 +14,6 @@ namespace DroneGame
 
             transform.LookAt(target.transform);
             mRigidbody.velocity = mCurDirection * m_BulletData.Speed;
-
         }
     }
 }

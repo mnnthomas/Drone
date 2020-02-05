@@ -622,10 +622,10 @@ MonoBehaviour:
   m_AngleBar: {fileID: 7199490841996509956}
   m_AngleBarMap:
     _Min:
-      _Value: -35
-      _MappedValue: 0
+      _Value: -50
+      _MappedValue: 10
     _Max:
-      _Value: 45
+      _Value: 50
       _MappedValue: -55
 --- !u!1 &7199490841610218451
 GameObject:

@@ -1434,8 +1434,8 @@ MonoBehaviour:
   m_MouseYKey: Mouse Y
   m_CameraTurnSpeed: 2
   m_CameraPitchClamp:
-    Min: -35
-    Max: 45
+    Min: -50
+    Max: 50
 --- !u!82 &9027668171413109304
 AudioSource:
   m_ObjectHideFlags: 0

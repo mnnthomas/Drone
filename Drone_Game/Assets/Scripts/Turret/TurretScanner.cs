@@ -62,10 +62,5 @@ namespace DroneGame
                 mPlayerLockdownStartTime = default;
             }
         }
-
-        private void OnTriggerStay(Collider other)
-        {
-            //if(other.tag == m_LockdownTag && )
-        }
     }
 }
